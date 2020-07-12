@@ -10,9 +10,7 @@ from instapy import set_workspace
 set_workspace(path=None)
 
 # get an InstaPy session!
-
-#session = InstaPy(username="lexus8545", password="yl921227@")
-session = InstaPy(username="daebeom.j", password="baboisdaebeom")
+session.InstaPy()
 session.set_comments(comments=['Nice photo!', 'Great!', 'Gorgeous!', 'Love it!'])
 session.set_do_comment(enabled=True, percentage=100)
 
