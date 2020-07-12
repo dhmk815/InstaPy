@@ -2077,7 +2077,9 @@ class InstaPy:
         amount: int = 10,
         randomize: bool = False,
         media: str = None,
+        user_tagged: bool = False
     ):
+        self.user_tagged = user_tagged
         """Likes some amounts of images for each usernames"""
         if self.aborting:
             return self
@@ -2133,6 +2135,7 @@ class InstaPy:
                     self.logfolder,
                     randomize,
                     media,
+                    taggedImages=self.user_tagged
                 )
 
             except NoSuchElementException:

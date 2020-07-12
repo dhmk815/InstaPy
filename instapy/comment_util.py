@@ -46,15 +46,25 @@ def open_comment_section(browser, logger):
         read_xpath(open_comment_section.__name__, "comment_elem")
     )
 
+    result = bool()
+
     if len(comment_elem) > 0:
+        logger.info("I found comment button!")
         try:
             click_element(browser, comment_elem[0])
+            logger.info("I clicked comment button!")
+            result = True
 
         except WebDriverException:
             logger.warning(missing_comment_elem_warning)
+            result = False
 
     else:
         logger.warning(missing_comment_elem_warning)
+        logger.info("No comment button!")
+        result = False
+    
+    return result
 
 
 def comment_image(browser, username, comments, blacklist, logger, logfolder):
@@ -67,7 +77,10 @@ def comment_image(browser, username, comments, blacklist, logger, logfolder):
     rand_comment = emoji.demojize(rand_comment)
     rand_comment = emoji.emojize(rand_comment, use_aliases=True)
 
-    open_comment_section(browser, logger)
+    result_open = open_comment_section(browser, logger)
+
+    if result_open == False:
+        return False, "Failed to open comment section"
     # wait, to avoid crash
     sleep(3)
     comment_input = get_comment_input(browser)

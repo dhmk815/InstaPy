@@ -456,7 +456,8 @@ def get_links_for_username(
     following_status, _ = get_following_status(
         browser, "profile", username, person, None, logger, logfolder
     )
-
+    if taggedImages:
+        web_address_navigator(browser, user_link)
     # if following_status is None:
     #    browser.wait_for_valid_connection(browser, username, logger)
 
